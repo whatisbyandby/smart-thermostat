@@ -46,7 +46,6 @@ class TemperatureController:
         self._all_off()
 
     def handle_new_reading(self, current_temperature):
-        print(self.settings.mqtt)
         temperature_state = self._compare_temperature(current_temperature)
         self.current_state = self._adjust_temperature(temperature_state)
         return self.current_state

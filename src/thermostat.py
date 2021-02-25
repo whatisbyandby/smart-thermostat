@@ -11,16 +11,14 @@ class Thermostat():
     def __init__(self):
         self.temperature_controller = TemperatureController()
         self.sensor_controller = SensorController()
-        self.data_controller = DataController()
+        self.mqtt_controller = DataController()
         self.settings = Settings()
-        self.relay_controller = RelayController()
-        self.display_controller = DisplayController()
+        self.user_interface = UserInterface()
 
     def startup(self):
         pass
 
     def run(self):
-        # print('Starting the thermostat')
         while True:
             current_temperature = self.sensor_controller.get_temperature()
             self.temperature_controller.handle_new_reading(current_temperature)
