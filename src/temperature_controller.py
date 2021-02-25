@@ -30,7 +30,6 @@ class TemperatureController:
 
     def set_mode(self, mode):
         self.mode = mode
-        self.state_controller.set_mode(mode)
 
     def get_mode(self):
         return self.mode

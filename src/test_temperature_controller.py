@@ -35,3 +35,21 @@ def test_handle_new_reading_off():
     assert temp_controller.handle_new_reading(20.9) == State.ALL_OFF
     assert temp_controller.handle_new_reading(21) == State.ALL_OFF
     temp_controller.shutdown()
+
+def test_update_set_temperature():
+    temp_controller = TemperatureController(20, 1, Mode.OFF)
+    assert temp_controller.update_set_temperature(25) == 25
+
+def test_get_mode_set_mode():
+    temp_controller = TemperatureController(20, 1, Mode.OFF)
+    assert temp_controller.get_mode() == Mode.OFF
+    temp_controller.set_mode(Mode.HEATER)
+    assert temp_controller.get_mode() == Mode.HEATER
+    temp_controller.set_mode(Mode.COOLER)
+    assert temp_controller.get_mode() == Mode.COOLER
+
+def test_get_set_temperature():
+    temp_controller = TemperatureController(20, 1, Mode.OFF)
+    assert temp_controller.get_set_temperature() == 20
+
+
