@@ -20,12 +20,12 @@ class State(Enum):
     ALL_OFF = 3
 
 class TemperatureController:
-    def __init__(self, set_temperature=20, temp_range=1, mode=Mode.OFF):
+    def __init__(self, set_temperature=20, temp_range=1, mode=Mode.OFF, relay_controller=RelayController()):
         self.mode = mode
         self.current_state = None
         self.set_temperature = set_temperature
         self.temp_range = temp_range
-        self.relay_controller = RelayController()
+        self.relay_controller = relay_controller
         self.settings = Settings()
 
     def set_mode(self, mode):
