@@ -19,18 +19,21 @@ class RelayController:
         self.channel_four.value = True
 
     def all_channels_off(self):
+        print('All Channels Off')
         self.channel_one.value = True
         self.channel_two.value = True
         self.channel_three.value = True
         self.channel_four.value= True
 
     def heater_channels_on(self):
+        print('Heater Channels On')
         self.channel_one.value = False
         self.channel_two.value = False
         self.channel_three.value = True
         self.channel_four.value= True
         
     def cooler_channels_on(self):
+        print('Cooler Channels On')
         self.channel_one.value = True
         self.channel_two.value = False
         self.channel_three.value = False

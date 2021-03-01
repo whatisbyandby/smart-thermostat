@@ -6,19 +6,6 @@ class UserInterface:
         self.settings = Settings()
         self.temperature_units = temperature_units
         
-
-    @staticmethod
-    def convert_c_to_f(temp_c):
-        temp_f = temp_c * (9/5)
-        temp_f = temp_f + 32
-        return temp_f
-
-    @staticmethod
-    def convert_f_to_c(temp_f):
-        temp_c = temp_f - 32
-        temp_c = temp_c * (5/9)
-        return temp_c
-
     def update_set_temperature(self, set_temperature, temperature_controller):
         if self.temperature_units == TemperatureUnits.F:
             temp_c = self.convert_f_to_c(set_temperature)

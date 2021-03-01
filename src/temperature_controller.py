@@ -3,10 +3,10 @@ from relay_controller import RelayController
 from settings import Settings
 
 
-class Mode(Enum):
-    HEATER = 1
-    COOLER = 2
-    OFF = 3
+class Mode(str, Enum):
+    HEATER = 'HEATER'
+    COOLER = 'COOLER'
+    OFF = 'OFF'
 
 class TemperatureCondition(Enum):
     UNDER_TEMP = 1
@@ -14,10 +14,10 @@ class TemperatureCondition(Enum):
     IN_RANGE_UNDER_TEMP = 3
     IN_RANGE_OVER_TEMP = 4
 
-class State(Enum):
-    HEATER_ON = 1
-    COOLER_ON = 2
-    ALL_OFF = 3
+class State(str, Enum):
+    HEATER_ON = 'HEATER_ON'
+    COOLER_ON = 'COOLER_ON'
+    ALL_OFF = 'ALL_OFF'
 
 class TemperatureController:
     def __init__(self, set_temperature=20, temp_range=1, mode=Mode.OFF, relay_controller=RelayController()):
@@ -45,6 +45,7 @@ class TemperatureController:
         self._all_off()
 
     def handle_new_reading(self, current_temperature):
+        print(current_temperature)
         temperature_state = self._compare_temperature(current_temperature)
         self.current_state = self._adjust_temperature(temperature_state)
         return self.current_state
@@ -81,7 +82,6 @@ class TemperatureController:
             return self._all_off()
 
     def _heater_on(self):
-        print('Heater On')
         if self.mode != Mode.HEATER:
             self.relay_controller.all_channels_off()
             return State.ALL_OFF
@@ -89,7 +89,6 @@ class TemperatureController:
         return State.HEATER_ON
 
     def _cooler_on(self):
-        print('Cooler On')
         if self.mode != Mode.COOLER:
             self.relay_controller.all_channels_off()
             return State.ALL_OFF
