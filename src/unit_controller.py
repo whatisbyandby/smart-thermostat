@@ -23,6 +23,14 @@ class UnitController:
 
     def convert(self, data_dict):
         if self.region == UnitRegion.US:
-            data_dict['temperature'] = self.convert_c_to_f(data_dict['temperature'])
+            data_dict['temperature'] = self.convert_c_to_f(data_dict.get('temperature'))
+            data_dict['set_temperature'] = self.convert_c_to_f(data_dict.get('set_temperature'))
             return data_dict
         return data_dict
+
+    def convert_incomming(self, temperature):
+        if self.region == UnitRegion.US:
+            return self.convert_f_to_c(temperature)
+        return temperature
+
+

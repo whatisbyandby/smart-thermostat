@@ -1,9 +1,7 @@
-from settings import Settings
 from units import TemperatureUnits
 
 class UserInterface:
     def __init__(self, temperature_units=TemperatureUnits.C):    
-        self.settings = Settings()
         self.temperature_units = temperature_units
         
     def update_set_temperature(self, set_temperature, temperature_controller):

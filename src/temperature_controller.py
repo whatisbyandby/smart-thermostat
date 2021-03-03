@@ -1,6 +1,5 @@
 from enum import Enum
 from relay_controller import RelayController
-from settings import Settings
 
 
 class Mode(str, Enum):
@@ -26,7 +25,6 @@ class TemperatureController:
         self.set_temperature = set_temperature
         self.temp_range = temp_range
         self.relay_controller = relay_controller
-        self.settings = Settings()
 
     def set_mode(self, mode):
         self.mode = mode
@@ -45,7 +43,6 @@ class TemperatureController:
         self._all_off()
 
     def handle_new_reading(self, current_temperature):
-        print(current_temperature)
         temperature_state = self._compare_temperature(current_temperature)
         self.current_state = self._adjust_temperature(temperature_state)
         return self.current_state
